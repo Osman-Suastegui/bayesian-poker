@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="../../bayesian-poker/static/css/registrarsePt1Styles.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+
+        <div class="colores">
+
+            <div class="primer-contenedor">
+                <a href=../../bayesian-poker/iniciarSesion.php" class="btn-imagen">
+                    <img src="../../bayesian-poker/static/img/flecha-png.png" alt="Botón con imagen">
+                </a>
+
+            </div>
+
+            <div class="segundo-contenedor">
+
+            </div>
+
+        </div>
+
+
+
+        <div class="centrado-carta">
+            <form class="card" method="POST" action="http://localhost:80/bayesian-poker/registrarsePt2.php">
+                <img class="img-user" src="../../bayesian-poker/static/img/perfil-de-usuario.webp" alt="usr">
+                <input type="text" name="nombre" placeholder="Nombres" class="input nombre">
+                <input type="text" name="apellido" placeholder="Apellidos" class="input apellido">
+                <input type="number" name="edad" placeholder="Edad" class="input edad">
+                <div class="custom-combobox">
+                    <input type="text" name="genero" class="input input-field genero" placeholder="Género">
+                    <ul class="options-list">
+                      <li>Masculino</li>
+                      <li>Femenino</li>
+                    </ul>
+                  </div>
+                
+                <!-- <button id="btnSiguiente" onclick=CambiarPestaña1() class="btn">Siguiente</button> -->
+                <input id="btnSiguiente" type="submit" class="btn"/>
+
+            </form>
+        </div>
+
+        <!-- <script src="/js/scripts1.js"></script> -->
+</body>
+</html>

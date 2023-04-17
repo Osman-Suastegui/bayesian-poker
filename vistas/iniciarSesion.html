@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="../../bayesian-poker/static/css/iniciarSesionStyles.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+        <div class="colores">
+
+            <div class="primer-contenedor">
+                <a href="#" class="btn-imagen">
+                    <img src="../../bayesian-poker/static/img/flecha-png.png" alt="Botón con imagen">
+                </a>
+
+            </div>
+
+            <div class="segundo-contenedor">
+
+            </div>
+
+        </div>
+
+
+
+        <div class="centrado-carta">
+            <form class="card" method="POST" action="http://localhost:80/bayesian-poker/iniciarSesion.php">
+                <img class="img-user" src="../../bayesian-poker/static/img/perfil-de-usuario.webp" alt="usr">
+                <input type="text" name="usuario" placeholder="Usuario" class="input texto" id="myInput">
+                <input type="password" name="contrasena" placeholder="Contraseña" class="input contrasena">
+                <input class="btn-iniciarSesion" type="submit"/>
+                <div class="enlaces">
+                    <a>¿No tienes una cuenta?</a>
+                    <a href="../../bayesian-poker/registrarse.php">Registrarse</a>
+                    <a href="/html/recuperarContra.html">¿Olvidaste tu Contraseña?</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- <script src="/js/scripts1.js"></script> -->
+</body>
+</html>
