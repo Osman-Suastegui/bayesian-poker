@@ -3,8 +3,12 @@
 include "../bayesian-poker/modelos/perfil.php";
 
 $perfil = new Perfil();
-session_start();
-$usuario = $_SESSION["usuario"];
+// session_start();
+// $usuario = $_SESSION["usuario"];
+// obtener cookie
+$usuario = $_COOKIE["usuario"];
+
+
 $datosPerfil = $perfil->obtenerPerfil($usuario);
 $nombre = $datosPerfil["nombre"];
 $apellido = $datosPerfil["apellido"];

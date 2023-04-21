@@ -8,16 +8,15 @@ if (isset($_POST["usuario"]) && isset($_POST["contrasena"])) {
     $contrasena = $_POST["contrasena"];
     $iniciarSesion = new IniciarSesion();
     $resultado = $iniciarSesion->verificarCredenciales($usuario, $contrasena);
-    if ($resultado) {
-        echo "sesion iniciada <br/>";
-        echo "id usuario:" . $_SESSION["idUsuario"];
-        header("Location: proyectos.php");
+    if ($resultado == "1") {
+        header("Location: proyectos.php");          
+    } else if($resultado == "2") {
+        echo "email no validado";
 
-          
-    } else {
-        echo "credenciales incorrectas";
-
+    }else{
+        echo "usuario o contraseña incorrectos";
     }
 }
+
 
 ?>

@@ -50,7 +50,6 @@ if(isset($_POST["usuario"]) && isset($_POST["contrasena"])  && isset($_POST["ema
   
     
      if($response == "1"){
-        echo "El correo se envio correctamente";
         $registrarse = new Registrarse();
         $registrarse->registrarUsuario($nombre, $apellido, $edad, $genero, $usuario, $contrasena, $email,$codigo);
         header("Location: alertaEmail.php");
