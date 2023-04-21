@@ -1,5 +1,5 @@
 <?php
-include "C:/wamp64/www/bayesian-poker/modelos/conexion.php";
+include "../bayesian-poker/modelos/conexion.php";
 
 class IniciarSesion
 {

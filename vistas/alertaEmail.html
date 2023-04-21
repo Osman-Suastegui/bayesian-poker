@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="../../bayesian-poker/static/css/alertaEmailStyles.css">
+    <link rel="stylesheet" href="../static/css/alertaEmailStyles.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,16 +25,18 @@
 
 
         <div class="centrado-carta">
-            <div class="card">
+            <form class="card" method="POST" action="../alertaEmail.php">
                 <div class="contenido-card">
-                    <img class="exclamacion" src="../../bayesian-poker/static/img/exclamacion-png.png" alt="img">
+                    <img class="exclamacion" src="../static/img/exclamacion-png.png" alt="img">
                     <h2 class="contenido">Email de Verificación</h2>
                     <p class="contenido">Para garantizar la seguridad recibirá
                         un correo de BayesianPoker con la 
                         finalidad de verificar su correo.</p>
                 </div>
-                <button onclick=CambiarPestaña3() class="btn">Finalizar</button>
-            </div>
+                <input type="text" name="codigoValidacionEmail" placeholder="0000">
+                <input type="submit" value="verificar codigo" class="btn">
+                <!-- <button onclick=CambiarPestaña3() class="btn">Finalizar</button> -->
+            </form>
         </div>
 
 
