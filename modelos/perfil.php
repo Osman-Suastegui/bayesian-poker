@@ -36,4 +36,13 @@ class Perfil
         return null;
         
     }
+    public function actualizarPerfil($nombre, $apellido, $edad, $sexo,$usuario)
+    {
+        $consulta = "UPDATE usuarios SET nombre = '$nombre', apellido = '$apellido', edad = '$edad', sexo = '$sexo' WHERE usuario = '$usuario'";
+        $resultado = $this->conexion->getConexion()->query($consulta);
+        if ($resultado) {
+            return true;
+        }
+        return false;
+    }
 }

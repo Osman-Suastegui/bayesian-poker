@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../static/css/VerPerfil.css">
+    <script src="../static/js/validaciones.js"></script>
 </head>
 <body>
     <section class="principal">
@@ -34,7 +35,7 @@
         <section  class="fondo">
             <h1> Mi perfil</h1>
             
-            <section class="divs">
+            <form class="divs" method="post" action="../perfil.php" >
                 
 
                 
@@ -42,7 +43,7 @@
                 <div class="nombre">
                     <p style = "display: inline-block;">Nombre (s)</p>
                   
-                      <input type="text" disabled="true" name="nombre" value="<?php echo $nombre;?>" style="display: inline-block;">
+                      <input type="text" disabled="true" id="nombre" name="nombre" value="<?php echo $nombre;?>" style="display: inline-block;">
                 
                     
                    
@@ -51,40 +52,41 @@
 
                 <div class="apellido">
                     <p style = "display: inline-block;">Apellido (s)</p>
-                    <input type="text" disabled="true" name="apellido" value="<?php echo $apellido;?>" style="display: inline-block;">
+                    <input type="text" disabled="true" id="apellido" name="apellido" value="<?php echo $apellido;?>" style="display: inline-block;">
 
                 </div>
 
                 <div class="edad">
                     <p style = "display: inline-block;">Edad</p>
-                    <input type="text"  disabled="true" name="edad"  value="<?php echo $edad;?>" style="display: inline-block;">
+                    <input type="text"  disabled="true" id="edad" name="edad"  value="<?php echo $edad;?>" style="display: inline-block;">
 
                 </div>    
                 
                 <div class="sexo">
                     <p style = "display: inline-block;">Sexo</p>
-                    <input type="text"  disabled="true" name="sexo" value="<?php echo $sexo;?>" style="display: inline-block;">
+                    <input type="text"  disabled="true" id="sexo" name="sexo" value="<?php echo $sexo;?>" style="display: inline-block;">
 
                 </div>  
 
                 <div class="usuario">
                     <p style = "display: inline-block;">Usuario</p>
-                    <input type="text" disabled="true" name="usuario" value="<?php echo $usuario;?>" style="display: inline-block;">
+                    <input type="text" disabled="true" id="usuario" name="usuario" value="<?php echo $usuario;?>" style="display: inline-block;">
 
                 </div>  
 
                 <div class="correo">
                     <p style = "display: inline-block;">Correo</p>
-                    <input type="email" disabled="true" name="edad" value="<?php echo $correo;?>" style="display: inline-block;">
+                    <input type="email" disabled="true" name="email" value="<?php echo $correo;?>" style="display: inline-block;">
 
                 </div>  
     
-                <div class="btnEditar">
-                    <button> Editar perfil</button>
+                <div class="btnEditar" onclick="habilitar();">
+                    <button type="button"> Editar perfil</button>
                 </div>
+                <input type="submit" value="guardar cambios"/>
 
-            </section>
-
+            </form>
+       
             <aside>
                 <h2>Cambiar Contraseña</h2>
                 <p>Recibe un enlace para acceder a una ventana de cambio de contraseña.</p>
@@ -92,7 +94,7 @@
             </aside>
 
             
-            <button class="volver">Volver</button>
+            <a class="volver" href="../proyectos.php">Volver</a>
 
         </section>
         

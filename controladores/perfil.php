@@ -1,12 +1,13 @@
 <?php
 
 include "../bayesian-poker/modelos/perfil.php";
-
-$perfil = new Perfil();
-// session_start();
-// $usuario = $_SESSION["usuario"];
-// obtener cookie
 $usuario = $_COOKIE["usuario"];
+$perfil = new Perfil();
+
+if (isset($_POST["nombre"]) && isset($_POST["apellido"]) && isset($_POST["edad"]) && isset($_POST["sexo"])) {
+   $perfil->actualizarPerfil($_POST["nombre"], $_POST["apellido"], $_POST["edad"], $_POST["sexo"], $usuario);
+}
+
 
 
 $datosPerfil = $perfil->obtenerPerfil($usuario);
