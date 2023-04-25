@@ -13,7 +13,7 @@
     <div class="colores">
 
         <div class="primer-contenedor">
-            <a href="/html/iniciarSesion.html" class="btn-imagen">
+            <a href="../iniciarSesion.php" class="btn-imagen">
                 <img src="../static/img/flecha-png.png" alt="Botón con imagen">
             </a>
 
@@ -27,7 +27,7 @@
 
 
         <div class="centrado-carta">
-            <div class="card">
+            <form class="card" method="POST" action="../recuperarContra.php">
                 <div class="contenido-card">
                     <img class="exclamacion" src="../static/img/correo-png.png" alt="img">
                     <p class="contenido">Ingresar el correo electrónico con
@@ -36,7 +36,7 @@
                 </div>
                 <input type="text" class="input correo" name="email" id="inputEmail" placeholder="E-mail">
                 <button onclick=CambiarPestaña5() class="btn">Siguiente</button>
-            </div>
+            </form>
         </div>
 
 
