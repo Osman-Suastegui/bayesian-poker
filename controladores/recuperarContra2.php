@@ -27,7 +27,7 @@ $valido = $validar->validarCodigo($codigo,$con);
 
 if($valido){
     if(isset($_POST['contra'])){
-        echo "el codigo es valido";
+        echo "<div class='mensaje-exito'>Es valido</div>";
         $contrasena = $_POST['contra'];
         $usuario = new Usuario();
         $usuario->cambiarContra($_COOKIE['email'], $contrasena,$con,$codigo);
@@ -40,7 +40,7 @@ if($valido){
     }
 
 }else{
-    echo "no es valido";
+    echo "<div class='mensaje-error'>No es valido</div>";
 }
 
 

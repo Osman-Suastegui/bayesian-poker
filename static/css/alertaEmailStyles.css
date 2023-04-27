@@ -116,3 +116,21 @@ body{
     cursor: pointer; 
     text-align: center;
   }
+
+  .input{
+    width: 30%;
+    height: 5%;
+    border: none;
+    border-radius: 24px;
+    padding: 10px;
+    font-size: 20px;
+    outline: none;
+    background: rgba(238, 251, 251, 0.53);
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 29px;
+    color: var(--color-letra);
+    
+}

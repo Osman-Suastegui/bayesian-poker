@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="../static/css/mensajesIniciarSesion.css">
+</head>
+<body>
+
 <?php
 include "../bayesian-poker/vistas/alertaEmail.html";
 include "../bayesian-poker/modelos/validarCodigo.php";
@@ -18,12 +26,15 @@ if (isset($_POST["codigoValidacionEmail"]) ) {
 
         // header("Location: bienvenidobayesianpoker.php");
 
-        echo "codigo correcto";
-       
+
+        header("Location: ../vistas/alertaCreacionCuenta.html");
     }else{
-        echo "codigo incorrecto";
+        echo "<div class='mensaje-error'>Codigo incorrecto</div>";
     }
 
 }
 
 ?>
+
+</body>
+</html>

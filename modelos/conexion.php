@@ -2,7 +2,7 @@
 class Conexion {
     private $host = "localhost";
     private $usuario = "root";
-    private $password = "osman";
+    private $password = "";
     private $bd = "bayesianpoker";
     private $conexion;
   

@@ -30,6 +30,20 @@ if(isset($_POST["usuario"]) && isset($_POST["contrasena"])  && isset($_POST["ema
     $_SESSION['usuario'] = $usuario;
     
   
+
+  
+    
+
+        $registrarse = new Registrarse();
+        $exitoRegistro = $registrarse->registrarUsuario($nombre, $apellido, $edad, $genero, $usuario, $contrasena, $email,$codigo);
+        
+        if($exitoRegistro == "0"){
+            echo "<div class='mensaje-error'>El nombre de usuario o el correo electronico ya esta en uso</div>";
+        }
+        if($exitoRegistro == "1"){
+            header("Location: alertaEmail.php");
+            
+
     $url = 'http://localhost:5000/send_email';
     $codigo = rand(1000, 9999);
     $data = array(
@@ -47,18 +61,13 @@ if(isset($_POST["usuario"]) && isset($_POST["contrasena"])  && isset($_POST["ema
     $response = curl_exec($ch);
     curl_close($ch);
 
-  
-    
-     if($response == "1"){
-        $registrarse = new Registrarse();
-        $registrarse->registrarUsuario($nombre, $apellido, $edad, $genero, $usuario, $contrasena, $email,$codigo);
-        header("Location: alertaEmail.php");
+        }
 
-    }else{
-        echo "El correo no se envio";
-    }
 
-   
+
+
+
+
 }
 
     

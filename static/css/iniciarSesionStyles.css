@@ -162,8 +162,8 @@ a{
 .btn-imagen img {
 width: 15%; /* Ajusta el tamaño de la imagen al 100% del ancho del enlace */
 height: auto; /* Ajusta la altura de la imagen automáticamente para mantener la proporción */
-padding-top: 15px;
-padding-left: 15px;
+padding-top: 18%;
+padding-left: 3%;
 }
 
 

@@ -11,8 +11,16 @@ class Registrarse{
         $stmt = $this->conexion->getConexion()->prepare("INSERT INTO usuarios(nombre, apellido, edad, sexo, correo,usuario ,contrasena,codigoEmail,emailValidado) VALUES (?, ?, ?, ?, ?, ?, ?,?,?)");
         $stmt->bind_param("ssissssss", $nombre, $apellido, $edad, $genero, $email, $usuario, $contrasena,$codigo,$emailValidado);
         $stmt->execute();
+        if($stmt->affected_rows == -1){
+            $stmt->close();
+            return "0";
+
+        }
+
         $stmt->close();
-       
+        
+        return "1";
+
     }
 
 }

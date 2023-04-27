@@ -22,11 +22,11 @@ if (isset($_POST['email'])) {
     curl_close($ch);
 
     if($response == "1"){
-        echo "se envio el correo correctamente";
+        echo "<div class='mensaje-exito'>Se ha enviado el correo exitosamente</div>";
         $regCod = new RegistrarCodigo();
         $regCod->registrarCodigo($codigo, $email);
     }else{
-        echo "El correo no se envio";
+        echo "<div class='mensaje-error'>El correo no se pudo enviar</div>";
     }
 
 
