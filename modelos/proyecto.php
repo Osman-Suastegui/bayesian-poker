@@ -1,26 +1,49 @@
 
-<?php 
+<?php
 include "../bayesian-poker/modelos/conexion.php";
 
-class Proyectos{
+class Proyectos
+{
     private $conexion;
     private $proyectos;
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->conexion = new Conexion();
-
-     
     }
 
-    public function obtenerProyectos(){
+    public function obtenerProyectos()
+    {
         session_start();
-        $idUsuario = $_SESSION['idUsuario'];
-        $proyectos = $this->conexion->getConexion()->query("SELECT idProyecto FROM integrantes WHERE idUsuario = '$idUsuario'");
-        // $resultado->fetch_assoc()['idUsuario']
-        while($proyectos->fetch_assoc()['idProyecto']){
-             
+        $idUsuario = $_COOKIE['idUsuario'];
+        $idProyectos = $this->conexion->getConexion()->query("SELECT idProyecto FROM integrantes WHERE idUsuario = '$idUsuario'");
+
+        $ids = [];
+        while ($fila = $idProyectos->fetch_assoc()) {
+            $ids[] = $fila['idProyecto'];
         }
-        return $this->proyectos;
+        $idString = implode(',', $ids);
+        
+
+        if (count($ids) > 0) {
+            $detallesProyectos = $this->conexion->getConexion()->query("SELECT nombre, descripcion FROM proyectos WHERE idProyecto IN ($idString)");
+            
+            $mapDatosProyectos = [];
+
+            while ($fila = $detallesProyectos->fetch_assoc()) {
+                $datos = array(
+                    "nombre" => $fila['nombre'],
+                    "descripcion" => $fila['descripcion']
+                );
+                $mapDatosProyectos[] = $datos;
+            }
+            return $mapDatosProyectos;
+
+        }
+        return [];
+
+        
+
     }
 
     public function crearProyecto($nombreProyecto,$descripcionProyecto){
@@ -65,5 +88,6 @@ class Proyectos{
         $stmt->bind_param("ii",$idUsuario, $idProyecto);
         $stmt->execute();
     }
+
 }
 ?>

@@ -9,7 +9,6 @@ class Conexion {
     public function __construct() {
         $this->conectar();
     }
-  
     public function conectar() {
       $this->conexion = new mysqli($this->host, $this->usuario, $this->password, $this->bd);
 
