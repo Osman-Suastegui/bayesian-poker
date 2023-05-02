@@ -16,13 +16,13 @@ class Proyectos
     {
         session_start();
         $idUsuario = $_COOKIE['idUsuario'];
-        $idProyectos = $this->conexion->getConexion()->query("SELECT idProyecto FROM integrantes WHERE idUsuario = '$idUsuario'");
+        $idProyectos = $this->conexion->getConexion()->query("SELECT idProyecto FROM integrantes WHERE idUsuario = '$idUsuario' and estatus = 'activo'");
 
         $ids = [];
         while ($fila = $idProyectos->fetch_assoc()) {
             $ids[] = $fila['idProyecto'];
         }
-        $idString = implode(',', $ids);
+        $idString = implode(',', $ids); 
         
 
         if (count($ids) > 0) {
@@ -87,6 +87,40 @@ class Proyectos
         $stmt = $this->conexion->getConexion()->prepare($sql);
         $stmt->bind_param("ii",$idUsuario, $idProyecto);
         $stmt->execute();
+    }
+
+    public function obtenerIntegrantesProyecto(){
+        $idProyecto = $_GET['idProyecto'];
+        $sql = "SELECT idUsuario,estatus FROM integrantes WHERE idProyecto = '$idProyecto'";
+        $resultado = $this->conexion->getConexion()->query($sql);
+        $integrantesActivos= [];
+        $integrantesInactivos= [];
+        $idsUsuarios = [];
+        while ($fila = $resultado->fetch_assoc()) {
+        $idsUsuarios[] = [$fila['idUsuario'],$fila['estatus']];
+        }
+        for ($i=0; $i < count($idsUsuarios); $i++) { 
+            $idUsuario = $idsUsuarios[$i][0];
+            $sql = "SELECT nombre, apellido FROM usuarios WHERE idUsuario = '$idUsuario'";
+            $resultado = $this->conexion->getConexion()->query($sql);
+            $fila = $resultado->fetch_assoc();
+            $nombre = $fila['nombre'];
+            $apellido = $fila['apellido'];
+            $nombreCompleto = $nombre . " " . $apellido;
+            if ($idsUsuarios[$i][1] == 'activo') {
+                $integrantesActivos[] = $nombreCompleto;
+            }else{
+                $integrantesInactivos[] = $nombreCompleto;
+            }
+        }
+        return [$integrantesActivos,$integrantesInactivos];
+    }
+
+    public function abandonarProyecto(){
+        $idUsuario = $_COOKIE['idUsuario'];
+        $idProyecto = 11;
+        $sql = "UPDATE integrantes SET estatus = 'inactivo' WHERE idUsuario = '$idUsuario' AND idProyecto = '$idProyecto'";
+        $this->conexion->getConexion()->query($sql);
     }
 
 }
