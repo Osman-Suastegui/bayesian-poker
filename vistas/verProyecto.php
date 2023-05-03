@@ -17,23 +17,48 @@
 
   ?>
 
-  <form class="container m-4 mx-auto rounded" style="background-color: #EEFBFB;" method="POST" action="../verProyecto.php">
+  <form class="container m-4 mx-auto rounded" style="background-color: #EEFBFB;" method="POST" action="../verProyecto.php?idProyecto=<?php echo $_GET['idProyecto'];?>">
 
     <div class="d-flex justify-content-between align-items-start">
       <h1 class="align-self-start">Proyecto</h1>
-      <div class="d-grid gap-2 d-md-flex justify-content-md-end m-3">
-        <button class="btn btn-danger" type="submit" name="abandonarProyecto" >Abandonar Proyecto</button>
-        <button class="btn btn-primary" type="button">Volver</button>
-      </div>
+
+      <?php
+      if ($rol == 'scrum master') {
+      ?>
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Opciones
+          </button>
+
+          <ul class="dropdown-menu dropdown-menu-dark ">
+            <li><a class="dropdown-item active" href="#">Editar Proyecto</a></li>
+            <li><button class="dropdown-item" type="submit" name='deshabilitarProyecto' href="#">Deshabilitar Proyecto</button></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="../proyectos.php">Volver</a></li>
+          </ul>
+        </div>
+      <?php
+      } else {
+      ?>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end m-3">
+          <button class="btn btn-danger" type="submit" name="abandonarProyecto">Abandonar Proyecto</button>
+          <button class="btn btn-primary" type="button">Volver</button>
+        </div>
+      <?php
+      }
+      ?>
+
     </div>
 
 
     <div class="row g-2">
       <div class="col-md">
-        <input type="text" class="form-control" placeholder="Nombre" aria-label="Nombre">
+        <input type="text" class="form-control" placeholder="Nombre" aria-label="Nombre" value="<?php echo $datosProyecto['nombreProyecto']?>">
       </div>
       <div class="col">
-        <input type="text" class="form-control" placeholder="Descripcion" aria-label="Código">
+        <input type="text" class="form-control" value="<?php echo $datosProyecto['descripcionProyecto']?>" placeholder="Descripcion" aria-label="Código">
       </div>
     </div>
 
@@ -49,7 +74,7 @@
         </tr>
       </thead>
       <tbody>
-      <?php
+        <?php
         for ($idx = 0; $idx < $maxIntegrantes; $idx++) {
           echo "<tr>";
           if ($idx < count($integrantesActivos)) {
@@ -65,7 +90,7 @@
           echo "</tr>";
         }
         ?>
-       
+
 
       </tbody>
     </table>
