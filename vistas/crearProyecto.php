@@ -24,7 +24,7 @@
     <div class="d-flex justify-content-between align-items-start">
       <h1 class="align-self-start">Crear Proyecto</h1>
       <div class="d-grid gap-2 d-md-flex justify-content-md-end m-3">
-        <button class="btn btn-primary" type="button">Volver</button>
+        <a href="../proyectos.php" class="btn btn-primary" type="button">Volver</a>
 
       </div>
     </div>

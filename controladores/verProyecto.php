@@ -1,7 +1,8 @@
 <?php
 include "./modelos/proyecto.php";
-
+include "./modelos/usuario.php";
 $proyecto = new Proyectos();
+$usuario = new Usuario();
 $integrantes = $proyecto->obtenerIntegrantesProyecto();
 $integrantesActivos = $integrantes[0];
 $integrantesInactivos = $integrantes[1];
@@ -13,7 +14,13 @@ if (isset($_POST['abandonarProyecto'])) {
     $proyecto->abandonarProyecto();
     header("Location: ./proyectos.php");
 }
+if(isset($_POST['deshabilitarProyecto'])){
+   $proyecto->deshabilitarProyecto();
+   header("Location: ./proyectos.php");
 
+}
+$rol = $usuario->obtenerRol();
+$datosProyecto = $proyecto->obtenerProyecto();
 
 include "../bayesian-poker/vistas/verProyecto.php";
 ?>

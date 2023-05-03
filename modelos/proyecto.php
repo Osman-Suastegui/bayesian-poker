@@ -14,7 +14,6 @@ class Proyectos
 
     public function obtenerProyectos()
     {
-        session_start();
         $idUsuario = $_COOKIE['idUsuario'];
         $idProyectos = $this->conexion->getConexion()->query("SELECT idProyecto FROM integrantes WHERE idUsuario = '$idUsuario' and estatus = 'activo'");
 
@@ -26,12 +25,13 @@ class Proyectos
         
 
         if (count($ids) > 0) {
-            $detallesProyectos = $this->conexion->getConexion()->query("SELECT nombre, descripcion FROM proyectos WHERE idProyecto IN ($idString)");
+            $detallesProyectos = $this->conexion->getConexion()->query("SELECT nombre, descripcion,idProyecto FROM proyectos WHERE idProyecto IN ($idString)");
             
             $mapDatosProyectos = [];
 
             while ($fila = $detallesProyectos->fetch_assoc()) {
                 $datos = array(
+                    "idProyecto" => $fila['idProyecto'],
                     "nombre" => $fila['nombre'],
                     "descripcion" => $fila['descripcion']
                 );
@@ -121,6 +121,28 @@ class Proyectos
         $idProyecto = 11;
         $sql = "UPDATE integrantes SET estatus = 'inactivo' WHERE idUsuario = '$idUsuario' AND idProyecto = '$idProyecto'";
         $this->conexion->getConexion()->query($sql);
+    }
+    public function deshabilitarProyecto(){
+        $idProyecto = $_GET['idProyecto'];
+        $sql = "UPDATE proyectos set estatus='inactivo' where idProyecto='$idProyecto'";
+        $this->conexion->getConexion()->query($sql);
+    }
+
+    public function obtenerProyecto(){
+        $idProyecto = $_GET['idProyecto'];
+        $sql = "SELECT nombre, descripcion,codigo FROM proyectos WHERE idProyecto = '$idProyecto'";
+        $resultado = $this->conexion->getConexion()->query($sql);
+        $fila = $resultado->fetch_assoc();
+        $nombre = $fila['nombre'];
+        $descripcion = $fila['descripcion'];
+        $codigo = $fila['codigo'];
+        $datos = array(
+            "nombreProyecto" => $nombre,
+            "descripcionProyecto" => $descripcion,
+            "codigoProyecto" => $codigo
+        );
+        return $datos;
+
     }
 
 }
