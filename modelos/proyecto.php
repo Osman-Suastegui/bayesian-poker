@@ -1,6 +1,6 @@
 
 <?php
-include "../bayesian-poker/modelos/conexion.php";
+include_once "../bayesian-poker/modelos/conexion.php";
 
 class Proyectos
 {
@@ -10,6 +10,12 @@ class Proyectos
     public function __construct()
     {
         $this->conexion = new Conexion();
+    }
+    public function obtenerNombreProyecto(){
+        $idProyecto = $_GET['idProyecto'];
+        $nombreProyecto = $this->conexion->getConexion()->query("SELECT nombre FROM proyectos WHERE idProyecto = '$idProyecto'");
+        $nombre = $nombreProyecto->fetch_assoc();
+        return $nombre['nombre'];
     }
 
     public function obtenerProyectos()

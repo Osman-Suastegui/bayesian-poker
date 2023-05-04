@@ -51,8 +51,25 @@ class Sprint{
         }
         $sprint = array('nombre' => "", 'descripcion' => "");
         return $sprint;
+    }
+    public function obtenerSprints(){
+        $idProyecto = $_GET['idProyecto'];
+        $conexion = new Conexion();
 
-        
+        $sql = "SELECT idSprint,nombre,descripcion FROM sprint WHERE idProyecto = '$idProyecto'";
+        $resultado = $conexion->getConexion()->query($sql);
+        $sprints = array();
+        if($resultado->num_rows > 0){
+            while ($fila = $resultado->fetch_assoc()) {
+                $sprint = array(
+                    "idSprint" => $fila['idSprint'],
+                    "nombreSprint" => $fila['nombre'],
+                    "descripcionSprint" => $fila['descripcion']
+                );
+                $sprints[] = $sprint;
+            }
+        }
+        return $sprints;
     }
 }
 ?>

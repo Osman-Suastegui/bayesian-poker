@@ -21,7 +21,7 @@
     <div class="d-flex justify-content-between align-items-start">
     <h1 class="align-self-start">Crear Sprint</h1>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end m-3">
-        <button class="btn btn-primary" type="button">Volver</button>
+        <a class="btn btn-primary" href="http://localhost:3000/proyectoSprints.php?idProyecto=<?php echo $_GET['idProyecto']?>" type="button">Volver</a>
         
       </div>
   </div>
