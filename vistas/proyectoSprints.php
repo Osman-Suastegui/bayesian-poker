@@ -39,7 +39,12 @@
     </div>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end ">
       <a class="btn btn-primary" href="../proyectos.php" >Volver</a>
-      <a href="http://localhost:3000/crearSprint.php?idProyecto=<?php echo $_GET['idProyecto'] ?>" class="btn btn-info">Agregar Sprint</a>
+      <?php
+      if ($rol == "scrum master") {
+        echo '<a href="http://localhost:3000/crearSprint.php?idProyecto=' . $_GET['idProyecto'] . '" class="btn btn-info">Agregar Sprint</a>';
+
+      }
+      ?>
 
     </div>
   </div>

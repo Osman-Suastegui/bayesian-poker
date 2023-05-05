@@ -31,7 +31,7 @@ class Proyectos
         
 
         if (count($ids) > 0) {
-            $detallesProyectos = $this->conexion->getConexion()->query("SELECT nombre, descripcion,idProyecto FROM proyectos WHERE idProyecto IN ($idString)");
+            $detallesProyectos = $this->conexion->getConexion()->query("SELECT nombre, descripcion,idProyecto,estatus FROM proyectos WHERE idProyecto IN ($idString)");
             
             $mapDatosProyectos = [];
 
@@ -39,7 +39,8 @@ class Proyectos
                 $datos = array(
                     "idProyecto" => $fila['idProyecto'],
                     "nombre" => $fila['nombre'],
-                    "descripcion" => $fila['descripcion']
+                    "descripcion" => $fila['descripcion'],
+                    "estatus" => $fila['estatus']
                 );
                 $mapDatosProyectos[] = $datos;
             }

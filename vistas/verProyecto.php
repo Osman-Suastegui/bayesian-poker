@@ -17,7 +17,7 @@
 
   ?>
 
-  <form class="container m-4 mx-auto rounded" style="background-color: #EEFBFB;" method="POST" action="../verProyecto.php?idProyecto=<?php echo $_GET['idProyecto'];?>">
+  <form class="container m-4 mx-auto rounded" style="background-color: #EEFBFB;" method="POST" action="../verProyecto.php?idProyecto=<?php echo $_GET['idProyecto']; ?>">
 
     <div class="d-flex justify-content-between align-items-start">
       <h1 class="align-self-start">Proyecto</h1>
@@ -33,6 +33,7 @@
           <ul class="dropdown-menu dropdown-menu-dark ">
             <li><a class="dropdown-item active" href="#">Editar Proyecto</a></li>
             <li><button class="dropdown-item" type="submit" name='deshabilitarProyecto' href="#">Deshabilitar Proyecto</button></li>
+            <li><button class="dropdown-item" type="submit" name='deshabilitarRol' href="#">Deshabilitar Rol</button></li>
             <li>
               <hr class="dropdown-divider">
             </li>
@@ -44,7 +45,7 @@
       ?>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end m-3">
           <button class="btn btn-danger" type="submit" name="abandonarProyecto">Abandonar Proyecto</button>
-          <button class="btn btn-primary" type="button">Volver</button>
+          <a class="btn btn-primary" href="../proyectos.php">Volver</a>
         </div>
       <?php
       }
@@ -55,10 +56,24 @@
 
     <div class="row g-2">
       <div class="col-md">
-        <input type="text" class="form-control" placeholder="Nombre" aria-label="Nombre" value="<?php echo $datosProyecto['nombreProyecto']?>">
+        <input type="text" class="form-control" placeholder="Nombre" aria-label="Nombre" value="<?php echo $datosProyecto['nombreProyecto'] ?>">
       </div>
-      <div class="col">
-        <input type="text" class="form-control" value="<?php echo $datosProyecto['descripcionProyecto']?>" placeholder="Descripcion" aria-label="Código">
+      <?php
+      if ($rol == 'scrum master') {
+      ?>
+        <div class="col">
+          <h5 class="form-control">Codigo: <?php echo $datosProyecto['codigoProyecto']?></h5>
+        </div>
+      <?php
+      }
+      ?>
+
+
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-md">
+        <input type="text" class="form-control" value="<?php echo $datosProyecto['descripcionProyecto'] ?>" placeholder="Descripcion" aria-label="Código">
       </div>
     </div>
 

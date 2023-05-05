@@ -13,8 +13,8 @@ class Usuario{
         $con->query($sql);
 
     }
-    function obtenerRol(){
-        $idProyecto = $_GET['idProyecto'];
+    function obtenerRol($idProyecto){
+        // $idProyecto = $_GET['idProyecto'];
         $idUsuario = $_COOKIE['idUsuario'];
         $conexion = new Conexion();
         

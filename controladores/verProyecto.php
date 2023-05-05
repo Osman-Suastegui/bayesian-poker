@@ -19,7 +19,8 @@ if(isset($_POST['deshabilitarProyecto'])){
    header("Location: ./proyectos.php");
 
 }
-$rol = $usuario->obtenerRol();
+$idProyecto = $_GET['idProyecto'];
+$rol = $usuario->obtenerRol($idProyecto);
 $datosProyecto = $proyecto->obtenerProyecto();
 
 include "../bayesian-poker/vistas/verProyecto.php";
