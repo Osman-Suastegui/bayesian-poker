@@ -11,7 +11,7 @@
 <body style = "background-color: #203647;">
 
 <?php
-  include "../bayesian-poker/vistas/header.html";
+  include "../bayesian-poker/vistas/header.php";
 
 ?>
    

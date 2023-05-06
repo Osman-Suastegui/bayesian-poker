@@ -15,7 +15,7 @@
     <section class="principal">
    <?php
 
-   include "../bayesian-poker/vistas/header.html";
+   include "../bayesian-poker/vistas/header.php";
    
    ?>
         
