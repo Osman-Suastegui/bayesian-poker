@@ -71,5 +71,16 @@ class Sprint{
         }
         return $sprints;
     }
+    public function obtenerNombreSprint($idSprint){
+        $sql = "SELECT nombre from sprint WHERE idSprint = '$idSprint'";
+        $conexion = new Conexion();
+        $resultado = $conexion->getConexion()->query($sql);
+        if($resultado->num_rows > 0){
+            $sprint = $resultado->fetch_assoc();
+            return $sprint['nombre'];
+        }
+        return "";
+
+    }
 }
 ?>

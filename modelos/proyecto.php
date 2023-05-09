@@ -151,6 +151,19 @@ class Proyectos
         return $datos;
 
     }
+    public function estaScrumMasterActivo($idProyecto){
+        $sql = "SELECT COUNT(*) FROM integrantes WHERE idProyecto = '$idProyecto' AND rol = 'scrum master' AND estatus = 'activo'";
+        $resultado = $this->conexion->getConexion()->query($sql);
+        $fila = $resultado->fetch_array();
+        return $fila[0] > 0;
+    }
+    public function deshabilitarRol($idUsuario,$idProyecto){
+        // esta funciona lo puede usar unicamente el scrum master y lo que hace es poner el estatus del
+        // scrum master a inactivo
+        $sql = "UPDATE integrantes SET estatus = 'inactivo' WHERE idUsuario = '$idUsuario' AND idProyecto = '$idProyecto'";
+        $this->conexion->getConexion()->query($sql);
+
+    }
 
 }
 ?>

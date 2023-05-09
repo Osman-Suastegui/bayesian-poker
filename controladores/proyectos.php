@@ -11,17 +11,16 @@ foreach ($proyectosTotales as $proyecto) {
     $idProyecto =  $proyecto['idProyecto'];
     $rol = $claseUsuario->obtenerRol($idProyecto);
 
-    if($rol == 'miembro'){
 
-        if($proyecto['estatus'] == 'activo'){
+    if($rol == 'miembro' && $proyecto['estatus'] == 'activo' &&  $proy->estaScrumMasterActivo($idProyecto)){
             $proyectos[] = array(
                 "idProyecto" => $proyecto['idProyecto'],
                 "nombre" => $proyecto['nombre'],
                 "descripcion" => $proyecto['descripcion'],
                 "estatus" => $proyecto['estatus']
             );
-        }
     }
+
     if($rol == 'scrum master'){
         $proyectos[] = array(
             "idProyecto" => $proyecto['idProyecto'],

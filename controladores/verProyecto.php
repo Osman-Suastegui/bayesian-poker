@@ -19,6 +19,13 @@ if(isset($_POST['deshabilitarProyecto'])){
    header("Location: ./proyectos.php");
 
 }
+if(isset($_POST['deshabilitarRol'])){
+    $idUsuario = $_COOKIE['idUsuario'];
+    $idProyecto = $_GET['idProyecto'];
+    $proyecto->deshabilitarRol($idUsuario,$idProyecto);
+    header("Location: ./proyectos.php");
+ 
+ }
 $idProyecto = $_GET['idProyecto'];
 $rol = $usuario->obtenerRol($idProyecto);
 $datosProyecto = $proyecto->obtenerProyecto();

@@ -21,7 +21,6 @@ if(isset($_POST['submit']) && $_POST['submit'] === 'eliminar') {
 
 $sprint = new Sprint();
 $sprint = $sprint->obtenerSprint($idSprint,$idProyecto);
-// $sprint = $sprint->obtenerSprint(5,11);
 $nombreSprint = $sprint['nombre'];
 $descripcionSprint = $sprint['descripcion'];
 

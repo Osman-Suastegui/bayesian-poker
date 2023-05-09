@@ -30,7 +30,7 @@
         echo '<div class="card-body">';
         echo '<h5 class="card-title">' . $sprint['nombreSprint'] . '</h5>';
         echo '<p class="card-text">' . $sprint['descripcionSprint'] . '</p>';
-        echo '<a href="http://localhost:3000/verSprint.php?idProyecto=' . $_GET['idProyecto'] . '&idSprint=' . $sprint['idSprint'] . '" class="btn btn-info">Ver sprint</a>';
+        echo '<a href="http://localhost:3000/verSprint.php?idProyecto=' . $_GET['idProyecto'] . '&idSprint=' . $sprint['idSprint'] . '&estatus=activo' . '" class="btn btn-info">Ver sprint</a>';
         echo '</div>';
         echo '</div>';
         echo '</div>';
