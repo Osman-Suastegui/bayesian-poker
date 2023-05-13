@@ -49,5 +49,14 @@ class Historia {
 
 
     }
+    public function esHistoriaAceptada($idHistoria){
+        $sql = "SELECT estatus FROM historiasusuario WHERE idHistoria = '$idHistoria'";
+        $conexion = new Conexion();
+        $resultado = $conexion->getConexion()->query($sql);
+        $estatus = $resultado->fetch_assoc()['estatus'];
+        return $estatus == 'aceptada';
+         
+
+    }
 }
 ?>

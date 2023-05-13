@@ -44,7 +44,7 @@
       <?php
         foreach ($historias as $historia) {
           ?>
-          <a href="http://localhost:3000/verHistoria.php?<?php echo 'idProyecto=' . $_GET['idProyecto'] . '&idSprint=' . $_GET['idSprint'] . '&idHistoria=' . $historia['idHistoria']; ?>" class="list-group-item list-group-item-action list-group-item-primary"><?php echo $historia['nombre']; ?></a>
+          <a href="http://localhost:3000/votar.php?<?php echo 'idProyecto=' . $_GET['idProyecto'] . '&idSprint=' . $_GET['idSprint'] . '&idHistoria=' . $historia['idHistoria']; ?>" class="list-group-item list-group-item-action list-group-item-primary"><?php echo $historia['nombre']; ?></a>
           <?php
         }
       
