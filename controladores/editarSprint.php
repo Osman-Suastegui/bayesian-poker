@@ -14,7 +14,14 @@ if (isset($_POST['submit']) && $_POST['submit'] === 'guardar') {
     }
 
 }
-if(isset($_POST['submit']) && $_POST['submit'] === 'eliminar') {
+if(isset($_POST['submit']) && $_POST['submit'] === 'deshabilitarSprint') {
+    $sprint = new Sprint();
+    $idSprint = $_GET['idSprint'];
+    $idProyecto = $_GET['idProyecto'];
+
+    $sprint->deshabilitarSprint($idSprint,$idProyecto);
+    header("Location: ./proyectoSprints.php?idProyecto=$idProyecto");
+
 
 }
 

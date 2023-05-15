@@ -37,7 +37,7 @@
   </div>
   <div class="d-grid gap-2 d-md-flex justify-content-md-end m-3">
     <button class="btn btn-success" type="submit" name="submit" value="guardar">Guardar Cambios</button>
-    <button class="btn btn-danger" type="submit" name="submit" value="eliminar">Eliminar Sprint</button>
+    <button class="btn btn-danger" type="submit" name="submit" value="deshabilitarSprint">Deshabilitar Sprint</button>
         
       </div>
   </form>

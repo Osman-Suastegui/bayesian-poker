@@ -56,7 +56,7 @@ class Sprint{
         $idProyecto = $_GET['idProyecto'];
         $conexion = new Conexion();
 
-        $sql = "SELECT idSprint,nombre,descripcion FROM sprint WHERE idProyecto = '$idProyecto'";
+        $sql = "SELECT idSprint,nombre,descripcion FROM sprint WHERE idProyecto = '$idProyecto' and estatus = 'activo'";
         $resultado = $conexion->getConexion()->query($sql);
         $sprints = array();
         if($resultado->num_rows > 0){
@@ -80,6 +80,14 @@ class Sprint{
             return $sprint['nombre'];
         }
         return "";
+
+    }
+    public function deshabilitarSprint($idSprint,$idProyecto){
+        $conexion = new Conexion();
+        $sql = "UPDATE sprint SET estatus = 'inactivo' WHERE idSprint = '$idSprint' AND idProyecto = '$idProyecto'";
+        $conexion->getConexion()->query($sql);
+
+
 
     }
 }

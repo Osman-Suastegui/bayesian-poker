@@ -12,42 +12,22 @@
 
     <?php
        include "../bayesian-poker/vistas/header.php";
+       include "../bayesian-poker/vistas/HistoriaFormulario.php";
 
     ?>
    
-<div class="container m-4 mx-auto rounded " style="background-color: #EEFBFB; height: auto;">
-    
-    <div class="d-flex justify-content-between align-items-start">
-    <h3 class="align-self-start my-1">Historia de Usuario 1</h3>
-    
-  </div>
-  <div class="border-bottom border-info"></div>
-
-  
-  <div class="mb-3">
-   
-    <textarea style= "resize: none; overflow: hidden; height: 190px;" class="form-control my-2" rows="3" placeholder="[Descripcion de Historia de Usuario]"></textarea>
-
-  </div>
-  <div class="d-grid gap-2 d-md-flex justify-content-md-start m-3 p-3">
-    <button class="btn btn-success" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">Mostrar historial</button>
-    <button class="btn btn-secondary" type="button">Editar historia</button>
-    <button class="btn btn-primary" type="button">Volver</button>
-
-</div>
-    </div>
-        
+     
     
     <div class="card card-lg w-50 h-50 text-bg-light border-info m-3 mx-auto">
         <h5 class="card-header">Resultado de la votacion</h5>
         <div class="card-body">
             <div class="input-group input-group-sm mb-3">
                 <span class="input-group-text" id="inputGroup-sizing-sm">Metodo de Aceptacion</span>
-            <input class="form-control w-50" type="text" placeholder="" disabled>
+            <input value="<?php echo $datosHistoria['metodoDeAceptacion'] ?>" class="form-control w-50" type="text" placeholder="" disabled>
             </div>
             <div class="input-group input-group-sm mb-3">
                 <span class="input-group-text" id="inputGroup-sizing-sm">Valor de la historia de usuario</span>
-            <input class="form-control" type="text" placeholder="" disabled>
+            <input value="<?php echo $valorHistoria ?>" class="form-control" type="text" placeholder="" disabled>
             </div>
         </div>
       </div>

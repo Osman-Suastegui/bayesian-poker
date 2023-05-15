@@ -12,47 +12,27 @@
 
  <?php
    include "../bayesian-poker/vistas/header.php";
+   include "../bayesian-poker/vistas/HistoriaFormulario.php";
 
  ?>
-   
-<div class="container m-4 mx-auto rounded " style="background-color: #EEFBFB; height: auto;">
-    
-    <div class="d-flex justify-content-between align-items-start">
-    <h3 class="align-self-start my-1">Historia de Usuario 1</h3>
-    
-  </div>
-  <div class="border-bottom border-info"></div>
-
   
-  <div class="mb-3">
-   
-    <textarea style= "resize: none; overflow: hidden; height: 190px;" class="form-control my-2" rows="3" placeholder="[Descripcion de Historia de Usuario]"></textarea>
+    <!-- http://localhost:3000/votar.php?idProyecto=11&idSprint=5&idHistoria=10 -->
 
-  </div>
-  <div class="d-grid gap-2 d-md-flex justify-content-md-start m-3 p-3">
-    <button class="btn btn-success" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">Mostrar historial</button>
-    <button class="btn btn-secondary" type="button">Editar historia</button>
-    <button class="btn btn-primary" type="button">Volver</button>
-
-</div>
-    </div>
-        
-    
-    <div class="card card-lg w-50 h-50 text-bg-light border-info m-3 mx-auto">
+    <form method="POST" action="http://localhost:3000/votar.php?idProyecto=<?php echo $_GET['idProyecto']?>&idSprint=<?php echo $_GET['idSprint']?>&idHistoria=<?php echo $_GET['idHistoria']?>" class="card card-lg w-50 h-50 text-bg-light border-info m-3 mx-auto">
         <h5 class="card-header">Metodos de Aceptacion</h5>
         <div class="card-body">
           <div class="input-group input-group-sm mb-3">
             <span class="input-group-text" id="inputGroup-sizing-sm">Valor Final</span>
-            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            <input type="text" name="valorVotoScrumMaster" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
           </div>
-          <a href="#" class="btn btn-primary ">Aceptar</a>
+          <button tpye="submit" name='decisionScrumMaster' class="btn btn-primary ">Aceptar</button>
           <div class="border-bottom border-dark my-3"></div>
-          <a href="#" class="btn btn-primary ">Asignar promedio de todas las votaciones</a>
+          <button type="submit" name="asignarPromedio" class="btn btn-primary ">Asignar promedio de todas las votaciones</button>
           <div class="border-bottom border-dark my-3"></div>
-          <a href="#" class="btn btn-primary ">Volver a votar (Agregar nueva ronda)</a>
+          <button type="submit" name="agregarRonda" class="btn btn-primary ">Volver a votar (Agregar nueva ronda)</button>
 
         </div>
-      </div>
+      </form>
     
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
   </body>

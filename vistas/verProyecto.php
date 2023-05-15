@@ -31,7 +31,7 @@
           </button>
 
           <ul class="dropdown-menu dropdown-menu-dark ">
-            <li><a class="dropdown-item active" href="#">Editar Proyecto</a></li>
+            <li><button name="guardarProyecto" class="dropdown-item active" href="#">Guardar Proyecto</button></li>
             <li><button class="dropdown-item" type="submit" name='deshabilitarProyecto' href="#">Deshabilitar Proyecto</button></li>
             <li><button class="dropdown-item" type="submit" name='deshabilitarRol' href="#">Deshabilitar Rol</button></li>
             <li>
@@ -56,7 +56,7 @@
 
     <div class="row g-2">
       <div class="col-md">
-        <input type="text" class="form-control" placeholder="Nombre" aria-label="Nombre" value="<?php echo $datosProyecto['nombreProyecto'] ?>">
+        <input type="text" name="nombreProyecto" class="form-control" placeholder="Nombre" aria-label="Nombre" value="<?php echo $datosProyecto['nombreProyecto'] ?>">
       </div>
       <?php
       if ($rol == 'scrum master') {
@@ -73,7 +73,7 @@
 
     <div class="row mt-2">
       <div class="col-md">
-        <input type="text" class="form-control" value="<?php echo $datosProyecto['descripcionProyecto'] ?>" placeholder="Descripcion" aria-label="Código">
+        <input type="text" name="descripcionProyecto" class="form-control" value="<?php echo $datosProyecto['descripcionProyecto'] ?>" placeholder="Descripcion" aria-label="Código">
       </div>
     </div>
 

@@ -12,9 +12,20 @@ class Historia {
         $resultado = $conexion->getConexion()->query($sql);
         if($resultado->num_rows > 0){
             $sql = "INSERT INTO historiasusuario (idSprint, nombre, descripcion, fechaCreacion,estatus,metodoDeAceptacion) VALUES ('$idSprint', '$nombre', '$descripcion', NOW(),'creada',null)";
-            $resultado = $conexion->getConexion()->query($sql);
+            $conexion->getConexion()->query($sql);
+            $idHistoria = $conexion->getConexion()->insert_id;
+            $this->crearRonda($idHistoria);
+       
+
+
+            
         }
-    
+    }
+    public function crearRonda($iHistoria){
+        $sql = "INSERT INTO rondas (idHistoria, puntuacion, fechaCreacion) VALUES ('$iHistoria', 0, NOW())";
+        $conexion = new Conexion();
+        $conexion->getConexion()->query($sql);
+
     }
 
     public function obtenerHistoriasActivas($idSprint){
@@ -56,7 +67,109 @@ class Historia {
         $estatus = $resultado->fetch_assoc()['estatus'];
         return $estatus == 'aceptada';
          
+    }
+    public function obtenerHistoria($idHistoria){
+        $sql = "SELECT * FROM historiasusuario WHERE idHistoria = '$idHistoria'";
+        $conexion = new Conexion();
+        $resultado = $conexion->getConexion()->query($sql);
+        $historia = $resultado->fetch_assoc();
+        return $historia;
+    }
+    public function votarHistoria($idHistoria,$valor,$motivo){
+        $idUsuario = $_COOKIE['idUsuario'];
+        $sql = "SELECT idRonda FROM rondas WHERE idHistoria = '$idHistoria' ORDER BY fechaCreacion DESC LIMIT 1";
+        $conexion = new Conexion();
+        $resultado = $conexion->getConexion()->query($sql);
+        $idRonda = intval($resultado->fetch_assoc()['idRonda']);
+        $sql = "INSERT INTO votaciones (idRonda, idUsuario, descripcion, valor) VALUES ('$idRonda', '$idUsuario', '$motivo', '$valor')";
+        $conexion->getConexion()->query($sql);
+        $sql = "UPDATE rondas SET puntuacion = puntuacion + '$valor' WHERE idRonda = '$idRonda'";
+        $conexion->getConexion()->query($sql);
+        $sql = "UPDATE historiasusuario SET estatus = 'deliberada' WHERE idHistoria = '$idHistoria'";
+        $conexion->getConexion()->query($sql);
 
     }
+    public function votarHistoriaScrumMaster($idHistoria,$valor){
+        $sql = "SELECT idRonda FROM rondas WHERE idHistoria = '$idHistoria' ORDER BY fechaCreacion DESC LIMIT 1";
+        $conexion = new Conexion();
+        $resultado = $conexion->getConexion()->query($sql);
+        $idRonda = intval($resultado->fetch_assoc()['idRonda']);
+        $sql = "UPDATE rondas SET puntuacion = '$valor' WHERE idRonda = '$idRonda'";
+        $conexion->getConexion()->query($sql);
+        $sql = "UPDATE historiasusuario SET estatus = 'aceptada',metodoDeAceptacion='decisionScrumMaster' WHERE idHistoria = '$idHistoria'";
+        $conexion->getConexion()->query($sql);
+
+
+    }
+    // verificar si el usuario ya voto en la ultima ronda de la historia
+    public function usuarioVotoUltimaRonda($idHistoria){
+        $idUsuario = $_COOKIE['idUsuario'];
+        $sql = "SELECT idRonda FROM rondas WHERE idHistoria = '$idHistoria' ORDER BY fechaCreacion DESC LIMIT 1";
+        $conexion = new Conexion();
+        $resultado = $conexion->getConexion()->query($sql);
+        $idRonda = intval($resultado->fetch_assoc()['idRonda']);
+        $sql = "SELECT * FROM votaciones WHERE idRonda = '$idRonda' AND idUsuario = '$idUsuario'";
+        $resultado = $conexion->getConexion()->query($sql);
+        return $resultado->num_rows > 0;
+    }
+    private function encontrarNumeroMasCercano($numero,$arrayNumeros){
+        $diferencia = 10000;
+        $resIndx = 0;
+        for($i = 0; $i < count($arrayNumeros); $i++){
+            if(abs($arrayNumeros[$i] - $numero) < $diferencia){
+                $diferencia = abs($arrayNumeros[$i] - $numero);
+                $resIndx = $i;
+            }
+        }
+        return $arrayNumeros[$resIndx];
+
+    }
+    public function obtenerValorHistoria($idHistoria){
+        $sql = "SELECT puntuacion FROM rondas WHERE idHistoria = '$idHistoria' ORDER BY fechaCreacion DESC LIMIT 1";
+        $conexion = new Conexion();
+        $resultado = $conexion->getConexion()->query($sql);
+        $valor = intval($resultado->fetch_assoc()['puntuacion']);
+        return $valor;
+    }
+    public function asignarPromedioDeTodasLasVotaciones($idHistoria){
+        $cartas = array(1,2,3,5,8,13);
+        $sql = "SELECT idRonda FROM rondas WHERE idHistoria = '$idHistoria' ORDER BY fechaCreacion DESC LIMIT 1";
+        $conexion = new Conexion();
+        $resultado = $conexion->getConexion()->query($sql);
+        $idRonda = intval($resultado->fetch_assoc()['idRonda']);
+        $sql = "SELECT valor FROM votaciones WHERE idRonda = '$idRonda'";
+        $resultado = $conexion->getConexion()->query($sql);
+        $valores = array();
+        $consenso = True;
+        if($resultado->num_rows > 0){
+            while($valor = $resultado->fetch_assoc()){
+                
+                $valores[] = intval($valor['valor']);
+            }
+            for($i = 0; $i < count($valores) - 1; $i++){
+                if($valores[$i] != $valores[$i+1]){
+                    $consenso = False;
+                    break;
+                }
+            }
+            
+            if($consenso){
+                // metodoDeAceptacion = consenso
+                $sql = "UPDATE historiasusuario SET estatus = 'aceptada', metodoDeAceptacion = 'consenso' WHERE idHistoria = '$idHistoria'";
+                $conexion->getConexion()->query($sql);
+                $sql = "UPDATE rondas SET puntuacion = '$valores[0]' WHERE idRonda = '$idRonda'";
+                $conexion->getConexion()->query($sql);
+            }else{
+                
+                $promedio = $this->encontrarNumeroMasCercano(array_sum($valores)/count($valores),$cartas);
+                $sql = "UPDATE historiasusuario SET estatus = 'aceptada', metodoDeAceptacion = 'promedio' WHERE idHistoria = '$idHistoria'";
+                $conexion->getConexion()->query($sql);
+                $sql = "UPDATE rondas SET puntuacion = '$promedio' WHERE idRonda = '$idRonda'";
+                $conexion->getConexion()->query($sql);
+            }
+
+        }
+    }
+
 }
 ?>

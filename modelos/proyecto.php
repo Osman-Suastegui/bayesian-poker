@@ -164,6 +164,11 @@ class Proyectos
         $this->conexion->getConexion()->query($sql);
 
     }
+    public function editarProyecto($idProyecto,$nombre,$descripcion){
+        $sql = "UPDATE proyectos SET nombre = '$nombre', descripcion = '$descripcion' WHERE idProyecto = '$idProyecto'";
+        $this->conexion->getConexion()->query($sql);
+
+    }
 
 }
 ?>
