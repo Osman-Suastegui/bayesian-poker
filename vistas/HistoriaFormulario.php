@@ -20,7 +20,7 @@ $datosHistoria = $historia->obtenerHistoria($idHistoria);
 
     </div>
     <div class="d-grid gap-2 d-md-flex justify-content-md-start m-3 p-3">
-        <button class="btn btn-success" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">Mostrar historial</button>
+    <button class="btn btn-success" type="button" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Mostrar historial</button>
         <?php
         if($rolUsuario == 'scrum master'){
             ?>
@@ -32,3 +32,7 @@ $datosHistoria = $historia->obtenerHistoria($idHistoria);
 
     </div>
 </div>
+<?php
+    include "../bayesian-poker/vistas/historialRondas.php";
+?>
+

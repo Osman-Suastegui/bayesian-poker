@@ -171,5 +171,27 @@ class Historia {
         }
     }
 
+    public function obtenerHistorialDeRondas($idHistoria){
+        // select rondas.idRonda,usuarios.nombre,votaciones.descripcion,rondas.fechaCreacion from votaciones 
+        // inner join usuarios on usuarios.idUsuario = votaciones.idUsuario
+        // inner join rondas on votaciones.idRonda = rondas.idRonda
+        // inner join historiasusuario on rondas.idHistoria = historiasusuario.idHistoria
+        // where historiasusuario.idHistoria = 11 
+        $sql = "SELECT rondas.idRonda,usuarios.nombre,votaciones.descripcion from votaciones
+        inner join usuarios on usuarios.idUsuario = votaciones.idUsuario
+        inner join rondas on votaciones.idRonda = rondas.idRonda
+        inner join historiasusuario on rondas.idHistoria = historiasusuario.idHistoria
+        where historiasusuario.idHistoria = '$idHistoria'";
+        $conexion = new Conexion();
+        $resultado = $conexion->getConexion()->query($sql);
+        $rondas = array();
+        if($resultado->num_rows > 0){
+            while($ronda = $resultado->fetch_assoc()){
+                $rondas[] = $ronda;
+            }
+        }
+        return $rondas;
+    }
+
 }
 ?>
