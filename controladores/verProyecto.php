@@ -19,7 +19,7 @@ if(isset($_POST['guardarProyecto'])){
     $idProyecto = $_GET['idProyecto'] ;
     $nombreProyecto = $_POST['nombreProyecto'];
     $descripcionProyecto = $_POST['descripcionProyecto'];
-    $proyeto->editarProyecto($idProyecto,$nombreProyecto,$descripcionProyecto);
+    $proyecto->editarProyecto($idProyecto,$nombreProyecto,$descripcionProyecto);
 }
 if(isset($_POST['deshabilitarProyecto'])){
    $proyecto->deshabilitarProyecto();
