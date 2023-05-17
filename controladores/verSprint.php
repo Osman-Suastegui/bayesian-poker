@@ -1,6 +1,10 @@
 <?php
     include "../bayesian-poker/modelos/sprint.php";
     include "../bayesian-poker/modelos/historia.php";
+    include "../bayesian-poker/modelos/Usuario.php";
+    $claseUsuario = new Usuario();
+    $rol = $claseUsuario->obtenerRol($_GET['idProyecto']);
+
 
     $sprint = new Sprint();
     $idProyecto = $_GET['idProyecto'];

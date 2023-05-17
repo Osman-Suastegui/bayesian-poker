@@ -25,12 +25,12 @@
     ?>
       <div class="fixed-bottom">
         <div class="container d-flex justify-content-center align-items-center mb-3">
-          <button type="button" id="puntaje1" class="btn btn-primary border m-2 " data-bs-toggle="modal" data-bs-target="#exampleModal">1</button>
-          <button type="button" id="puntaje2" class="btn btn-primary border m-2" data-bs-toggle="modal" data-bs-target="#exampleModal">2</button>
-          <button type="button" id="puntaje3" class="btn btn-primary border m-2" data-bs-toggle="modal" data-bs-target="#exampleModal">3</button>
-          <button type="button" id="puntaje5" class="btn btn-primary border m-2" data-bs-toggle="modal" data-bs-target="#exampleModal">5</button>
-          <button type="button" id="puntaje8" class="btn btn-primary border m-2" data-bs-toggle="modal" data-bs-target="#exampleModal">8</button>
-          <button type="button" id="puntaje13" class="btn btn-primary border m-2" data-bs-toggle="modal" data-bs-target="#exampleModal">13</button>
+          <button onclick="fijarCookie('1')" type="button" id="puntaje1" class="btn btn-primary border m-2 " data-bs-toggle="modal" data-bs-target="#exampleModal">1</button>
+          <button onclick="fijarCookie('2')"  type="button" id="puntaje2" class="btn btn-primary border m-2" data-bs-toggle="modal" data-bs-target="#exampleModal">2</button>
+          <button onclick="fijarCookie('3')" type="button" id="puntaje3" class="btn btn-primary border m-2" data-bs-toggle="modal" data-bs-target="#exampleModal">3</button>
+          <button onclick="fijarCookie('5')" type="button" id="puntaje5" class="btn btn-primary border m-2" data-bs-toggle="modal" data-bs-target="#exampleModal">5</button>
+          <button onclick="fijarCookie('8')" type="button" id="puntaje8" class="btn btn-primary border m-2" data-bs-toggle="modal" data-bs-target="#exampleModal">8</button>
+          <button onclick="fijarCookie('13')" type="button" id="puntaje13" class="btn btn-primary border m-2" data-bs-toggle="modal" data-bs-target="#exampleModal">13</button>
 
         </div>
       </div>
@@ -70,24 +70,9 @@
 
 
   <script>
-    document.getElementById('puntaje1').addEventListener('click', function() {
-      document.cookie = 'puntaje=1';
-    });
-    document.getElementById('puntaje2').addEventListener('click', function() {
-      document.cookie = 'puntaje=2';
-    });
-    document.getElementById('puntaje3').addEventListener('click', function() {
-      document.cookie = 'puntaje=3';
-    });
-    document.getElementById('puntaje5').addEventListener('click', function() {
-      document.cookie = 'puntaje=5';
-    });
-    document.getElementById('puntaje8').addEventListener('click', function() {
-      document.cookie = 'puntaje=8';
-    });
-    document.getElementById('puntaje13').addEventListener('click', function() {
-      document.cookie = 'puntaje=13';
-    });
+    function fijarCookie(puntaje) {
+      document.cookie = "puntaje=" + puntaje;
+    }
     const exampleModal = document.getElementById('exampleModal')
     if (exampleModal) {
       exampleModal.addEventListener('show.bs.modal', event => {

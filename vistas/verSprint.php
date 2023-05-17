@@ -55,9 +55,16 @@
 
 
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-    <a href="http://localhost:3000/editarSprint.php?<?php echo 'idProyecto=' . $_GET['idProyecto'] . '&idSprint=' . $_GET['idSprint']; ?>" class="btn btn-secondary">Editar Sprint</a>
+      <?php
+      if($rol == 'scrum master'){
+        ?>
+        <a href="http://localhost:3000/editarSprint.php?<?php echo 'idProyecto=' . $_GET['idProyecto'] . '&idSprint=' . $_GET['idSprint']; ?>" class="btn btn-secondary">Editar Sprint</a>
 
-    <a href="http://localhost:3000/CrearHistoria.php?idProyecto=<?php echo $_GET['idProyecto'] ?>&idSprint=<?php echo $_GET['idSprint'] ?>" class="btn btn-info">Añadir Historia</a>
+        <a href="http://localhost:3000/CrearHistoria.php?idProyecto=<?php echo $_GET['idProyecto'] ?>&idSprint=<?php echo $_GET['idSprint'] ?>" class="btn btn-info">Añadir Historia</a>
+        
+        <?php    
+      }
+      ?>
       <a href="http://localhost:3000/proyectoSprints.php?idProyecto=<?php echo $_GET['idProyecto'] ?>" class="btn btn-primary" >Volver</a>
 
 

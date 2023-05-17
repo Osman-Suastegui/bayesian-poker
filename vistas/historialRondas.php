@@ -75,16 +75,16 @@
     
     document.getElementById("message-text").value = descripcion;
   }
-  const exampleModal = document.getElementById('exampleModal')
-  if (exampleModal) {
-    exampleModal.addEventListener('show.bs.modal', event => {
+  const exampleModal2 = document.getElementById('exampleModal')
+  if (exampleModal2) {
+    exampleModal2.addEventListener('show.bs.modal', event => {
 
       const button = event.relatedTarget
 
       const recipient = button.getAttribute('data-bs-whatever')
 
 
-      const modalBodyInput = exampleModal.querySelector('.modal-body input')
+      const modalBodyInput = exampleModal2.querySelector('.modal-body input')
 
 
       modalBodyInput.value = recipient
