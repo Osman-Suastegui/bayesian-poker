@@ -25,6 +25,13 @@ class Usuario{
         
 
     }
+    function obtenerIdUsuario($usuario){
+        $conexion = new Conexion();
+        $sql = "SELECT idUsuario FROM usuarios WHERE usuario = '$usuario'";
+        $resultado = $conexion->getConexion()->query($sql);
+        $idUsuario = $resultado->fetch_assoc()['idUsuario'];
+        return $idUsuario;
+    }
 
 }
 

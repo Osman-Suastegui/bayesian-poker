@@ -7,9 +7,9 @@ include "../bayesian-poker/modelos/usuario.php";
 $sprintClase = new Sprint();
 $sprints = $sprintClase->obtenerSprints();
 $proyectoClase = new Proyectos();
-$nombreProyecto  = $proyectoClase->obtenerNombreProyecto();
-$claseUsuario = new Usuario();
 $idProyecto = $_GET['idProyecto'];
+$nombreProyecto  = $proyectoClase->obtenerNombreProyecto($idProyecto);
+$claseUsuario = new Usuario();
 
 $rol = $claseUsuario->obtenerRol($idProyecto);
 

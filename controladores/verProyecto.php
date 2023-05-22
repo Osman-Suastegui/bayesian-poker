@@ -3,7 +3,8 @@ include "./modelos/proyecto.php";
 include "./modelos/usuario.php";
 $proyecto = new Proyectos();
 $usuario = new Usuario();
-$integrantes = $proyecto->obtenerIntegrantesProyecto();
+$idProyecto = $_GET['idProyecto'];
+$integrantes = $proyecto->obtenerIntegrantesProyecto($idProyecto);
 $integrantesActivos = $integrantes[0];
 $integrantesInactivos = $integrantes[1];
 
@@ -19,7 +20,12 @@ if(isset($_POST['guardarProyecto'])){
     $idProyecto = $_GET['idProyecto'] ;
     $nombreProyecto = $_POST['nombreProyecto'];
     $descripcionProyecto = $_POST['descripcionProyecto'];
-    $proyecto->editarProyecto($idProyecto,$nombreProyecto,$descripcionProyecto);
+    if ($nombreProyecto == "" || $descripcionProyecto == ""){
+        echo "los campos no pueden estar vacios";
+    }else{
+        $proyecto->editarProyecto($idProyecto,$nombreProyecto,$descripcionProyecto);
+    }
+        
 }
 if(isset($_POST['deshabilitarProyecto'])){
    $proyecto->deshabilitarProyecto();

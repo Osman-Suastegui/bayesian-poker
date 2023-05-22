@@ -11,8 +11,8 @@ class Proyectos
     {
         $this->conexion = new Conexion();
     }
-    public function obtenerNombreProyecto(){
-        $idProyecto = $_GET['idProyecto'];
+    public function obtenerNombreProyecto($idProyecto){
+        
         $nombreProyecto = $this->conexion->getConexion()->query("SELECT nombre FROM proyectos WHERE idProyecto = '$idProyecto'");
         $nombre = $nombreProyecto->fetch_assoc();
         return $nombre['nombre'];
@@ -72,7 +72,7 @@ class Proyectos
         return $codigo;
 
     }
-    private function existeCodigoProyecto($codigoProyecto){
+    public function existeCodigoProyecto($codigoProyecto){
 
         $sql = "SELECT COUNT(*) FROM proyectos WHERE codigo = '$codigoProyecto'";
         $resultado = $this->conexion->getConexion()->query($sql);
@@ -89,15 +89,15 @@ class Proyectos
         $idProyecto = $this->conexion->getConexion()->insert_id;
         return $idProyecto;
     }
-    private function insertarIntegranteBD($idUsuario, $idProyecto,$rol){
+    public function insertarIntegranteBD($idUsuario, $idProyecto,$rol){
         $sql = "INSERT INTO integrantes (idUsuario, idProyecto, rol, estatus) VALUES (?, ?, '$rol', 'activo')";
         $stmt = $this->conexion->getConexion()->prepare($sql);
         $stmt->bind_param("ii",$idUsuario, $idProyecto);
         $stmt->execute();
     }
 
-    public function obtenerIntegrantesProyecto(){
-        $idProyecto = $_GET['idProyecto'];
+    public function obtenerIntegrantesProyecto($idProyecto){
+        
         $sql = "SELECT idUsuario,estatus FROM integrantes WHERE idProyecto = '$idProyecto'";
         $resultado = $this->conexion->getConexion()->query($sql);
         $integrantesActivos= [];
@@ -169,6 +169,7 @@ class Proyectos
         $this->conexion->getConexion()->query($sql);
 
     }
+
 
 }
 ?>

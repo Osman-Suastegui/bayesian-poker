@@ -14,23 +14,27 @@
   <?php
 
   include "../bayesian-poker/vistas/header.php";
+  $baseURL = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
+
   ?>
 
 
   <div class="container border border-info m-3 mx-auto p-3" style="height: auto; width: auto; ">
-    <h1 class="fs-3 fw-bold text-center" style="color: white;"> <a href="http://localhost:3000/verProyecto.php?idProyecto=<?php echo $_GET['idProyecto']?>" class="link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"><?php echo $nombreProyecto?></a> <span> Estatus:</span> <span class="estado">Activo/Inactivo</span></h1>
+
+    <h1 class="fs-3 fw-bold text-center" style="color: white;"> <a href="<?php $baseURL?>/verProyecto.php?idProyecto=<?php echo $_GET['idProyecto']?>" class="link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"><?php echo $nombreProyecto?></a> <span> Estatus:</span> <span class="estado">Activo/Inactivo</span></h1>
     <p class="fs-6 fw-normal text-center" style="color: white;">Elige un sprint para acceder a las historias de usuario, tambien puedes ver la informacion del proyecto</p>
     <div class="border-bottom border-info"></div>
 
     <div class="row my-3">
       <?php
+
       foreach ($sprints as $sprint) {
         echo '<div class="col-sm-6">';
         echo '<div class="card text-bg-primary mb-3">';
         echo '<div class="card-body">';
         echo '<h5 class="card-title">' . $sprint['nombreSprint'] . '</h5>';
         echo '<p class="card-text">' . $sprint['descripcionSprint'] . '</p>';
-        echo '<a href="http://localhost:3000/verSprint.php?idProyecto=' . $_GET['idProyecto'] . '&idSprint=' . $sprint['idSprint'] . '&estatus=activo' . '" class="btn btn-info">Ver sprint</a>';
+        echo '<a href="'.$baseURL.'/verSprint.php?idProyecto=' . $_GET['idProyecto'] . '&idSprint=' . $sprint['idSprint'] . '&estatus=activo' . '" class="btn btn-info">Ver sprint</a>';
         echo '</div>';
         echo '</div>';
         echo '</div>';
@@ -41,7 +45,7 @@
       <a class="btn btn-primary" href="../proyectos.php" >Volver</a>
       <?php
       if ($rol == "scrum master") {
-        echo '<a href="http://localhost:3000/crearSprint.php?idProyecto=' . $_GET['idProyecto'] . '" class="btn btn-info">Agregar Sprint</a>';
+        echo '<a href="'.$baseURL.'/crearSprint.php?idProyecto=' . $_GET['idProyecto'] . '" class="btn btn-info">Agregar Sprint</a>';
 
       }
       ?>

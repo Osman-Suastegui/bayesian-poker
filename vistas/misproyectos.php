@@ -25,13 +25,16 @@
 
     <div class="row my-3">
       <?php
+  
+      $baseURL = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
+  
       foreach ($proyectos as $proyecto) {
         echo '<div class="col-sm-6">
         <div class="card text-bg-primary mb-3">
           <div class="card-body">
             <h5 class="card-title">' . $proyecto['nombre'] . '</h5>
             <p class="card-text">' . $proyecto['descripcion'] . '</p>
-            <a href="http://localhost:3000/proyectoSprints.php?idProyecto=' . $proyecto['idProyecto'] . '" class="btn btn-info">Ver Proyecto</a>
+            <a href='.$baseURL.'/proyectoSprints.php?idProyecto=' . $proyecto['idProyecto'] . ' class="btn btn-info">Ver Proyecto</a>
           </div>
         </div>  
       </div>';
@@ -49,18 +52,18 @@
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
           <div class="offcanvas-body">
-            <div>
+            <form method="POST" action="./proyectos.php">
               <h4>Ingresa el código del proyecto proporcionado por el scrum master</h2>
                 <div class="form-floating mb-3">
-                  <input type="text" class="form-control" id="floatingInput" placeholder="Código">
+                  <input name="codigoProyecto" type="text" class="form-control" id="floatingInput" placeholder="Código">
                   <label for="floatingInput">Código</label>
                 </div>
                 <div id="liveAlertPlaceholder"></div>
-                <button type="button" class="btn btn-primary" id="liveAlertBtn">Solicitar</button>
+                <button type="submit" class="btn btn-primary" id="liveAlertBtn">Solicitar</button>
 
-            </div>
+         </form>
           </div>
-        </div>
+
 
       </div>
 

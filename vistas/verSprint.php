@@ -14,6 +14,8 @@
 
   <?php
   include "../bayesian-poker/vistas/header.php";
+  $baseURL = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
+
 
   ?>
 
@@ -28,14 +30,14 @@
       if($_GET['estatus'] == 'activo'){
       ?>
        
-        <a href="http://localhost:3000/verSprint.php?<?php echo 'idProyecto=' . $_GET['idProyecto'] . '&idSprint=' . $_GET['idSprint'] . '&estatus=inactivo'; ?>" class="list-group-item list-group-item-action active" aria-current="true">
+        <a href="<?php $baseURL?>/verSprint.php?<?php echo 'idProyecto=' . $_GET['idProyecto'] . '&idSprint=' . $_GET['idSprint'] . '&estatus=inactivo'; ?>" class="list-group-item list-group-item-action active" aria-current="true">
           Historias activas
         </a>
       
       <?php
       }else{
         ?>
-        <a href="http://localhost:3000/verSprint.php?<?php echo 'idProyecto=' . $_GET['idProyecto'] . '&idSprint=' . $_GET['idSprint'] . '&estatus=activo'; ?>" class="list-group-item list-group-item-action active" aria-current="true">
+        <a href="<?php $baseURL?>/verSprint.php?<?php echo 'idProyecto=' . $_GET['idProyecto'] . '&idSprint=' . $_GET['idSprint'] . '&estatus=activo'; ?>" class="list-group-item list-group-item-action active" aria-current="true">
         Historias inactivas
         </a>
         <?php
@@ -44,7 +46,7 @@
       <?php
         foreach ($historias as $historia) {
           ?>
-          <a href="http://localhost:3000/votar.php?<?php echo 'idProyecto=' . $_GET['idProyecto'] . '&idSprint=' . $_GET['idSprint'] . '&idHistoria=' . $historia['idHistoria']; ?>" class="list-group-item list-group-item-action list-group-item-primary"><?php echo $historia['nombre']; ?></a>
+          <a href="<?php $baseURL?>/votar.php?<?php echo 'idProyecto=' . $_GET['idProyecto'] . '&idSprint=' . $_GET['idSprint'] . '&idHistoria=' . $historia['idHistoria']; ?>" class="list-group-item list-group-item-action list-group-item-primary"><?php echo $historia['nombre']; ?></a>
           <?php
         }
       
@@ -58,14 +60,14 @@
       <?php
       if($rol == 'scrum master'){
         ?>
-        <a href="http://localhost:3000/editarSprint.php?<?php echo 'idProyecto=' . $_GET['idProyecto'] . '&idSprint=' . $_GET['idSprint']; ?>" class="btn btn-secondary">Editar Sprint</a>
+        <a href="<?php $baseURL?>/editarSprint.php?<?php echo 'idProyecto=' . $_GET['idProyecto'] . '&idSprint=' . $_GET['idSprint']; ?>" class="btn btn-secondary">Editar Sprint</a>
 
-        <a href="http://localhost:3000/CrearHistoria.php?idProyecto=<?php echo $_GET['idProyecto'] ?>&idSprint=<?php echo $_GET['idSprint'] ?>" class="btn btn-info">Añadir Historia</a>
+        <a href="<?php $baseURL?>/CrearHistoria.php?idProyecto=<?php echo $_GET['idProyecto'] ?>&idSprint=<?php echo $_GET['idSprint'] ?>" class="btn btn-info">Añadir Historia</a>
         
         <?php    
       }
       ?>
-      <a href="http://localhost:3000/proyectoSprints.php?idProyecto=<?php echo $_GET['idProyecto'] ?>" class="btn btn-primary" >Volver</a>
+      <a href="<?php $baseURL?>/proyectoSprints.php?idProyecto=<?php echo $_GET['idProyecto'] ?>" class="btn btn-primary" >Volver</a>
 
 
 

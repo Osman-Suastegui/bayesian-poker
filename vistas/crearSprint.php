@@ -12,6 +12,7 @@
 
 <?php
   include "../bayesian-poker/vistas/header.php";
+  $baseURL = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
 
 ?>
   
@@ -21,7 +22,7 @@
     <div class="d-flex justify-content-between align-items-start">
     <h1 class="align-self-start">Crear Sprint</h1>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end m-3">
-        <a class="btn btn-primary" href="http://localhost:3000/proyectoSprints.php?idProyecto=<?php echo $_GET['idProyecto']?>" type="button">Volver</a>
+        <a class="btn btn-primary" href="<?php $baseURL?>/proyectoSprints.php?idProyecto=<?php echo $_GET['idProyecto']?>" type="button">Volver</a>
         
       </div>
   </div>

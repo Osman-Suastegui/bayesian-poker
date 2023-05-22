@@ -33,6 +33,7 @@ if(isset($_POST["usuario"]) && isset($_POST["contrasena"])  && isset($_POST["ema
 
   
     
+        $codigo = rand(1000, 9999);
 
         $registrarse = new Registrarse();
         $exitoRegistro = $registrarse->registrarUsuario($nombre, $apellido, $edad, $genero, $usuario, $contrasena, $email,$codigo);
@@ -45,7 +46,6 @@ if(isset($_POST["usuario"]) && isset($_POST["contrasena"])  && isset($_POST["ema
             
 
     $url = 'http://localhost:5000/send_email';
-    $codigo = rand(1000, 9999);
     $data = array(
         'destinatario' => $email,
         "codigoDeValidacion" => $codigo

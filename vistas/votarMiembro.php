@@ -15,11 +15,12 @@
 
   include "../bayesian-poker/vistas/header.php";
   include "../bayesian-poker/vistas/HistoriaFormulario.php";
+  $baseURL = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
 
   ?>
 
 
-  <form method="POST" action="http://localhost:3000<?php echo $_SERVER['REQUEST_URI']; ?>">
+  <form method="POST" action="<?php $baseURL . $_SERVER['REQUEST_URI']; ?>">
     <?php
     if (!$historia->usuarioVotoUltimaRonda($idHistoria)) {
     ?>

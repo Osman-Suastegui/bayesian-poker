@@ -13,12 +13,12 @@
  <?php
    include "../bayesian-poker/vistas/header.php";
    include "../bayesian-poker/vistas/HistoriaFormulario.php";
+   $baseURL = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
 
  ?>
   
-    <!-- http://localhost:3000/votar.php?idProyecto=11&idSprint=5&idHistoria=10 -->
 
-    <form method="POST" action="http://localhost:3000/votar.php?idProyecto=<?php echo $_GET['idProyecto']?>&idSprint=<?php echo $_GET['idSprint']?>&idHistoria=<?php echo $_GET['idHistoria']?>" class="card card-lg w-50 h-50 text-bg-light border-info m-3 mx-auto">
+    <form method="POST" action="<?php $baseURL?>/votar.php?idProyecto=<?php echo $_GET['idProyecto']?>&idSprint=<?php echo $_GET['idSprint']?>&idHistoria=<?php echo $_GET['idHistoria']?>" class="card card-lg w-50 h-50 text-bg-light border-info m-3 mx-auto">
         <h5 class="card-header">Metodos de Aceptacion</h5>
         <div class="card-body">
           <div class="input-group input-group-sm mb-3">

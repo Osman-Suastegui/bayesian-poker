@@ -1,5 +1,7 @@
 <?php
 include_once "../bayesian-poker/modelos/conexion.php";
+include_once "../bayesian-poker/modelos/notificaciones.php";
+include_once "../bayesian-poker/modelos/proyecto.php";
 
 class Historia {
 
@@ -14,17 +16,17 @@ class Historia {
             $sql = "INSERT INTO historiasusuario (idSprint, nombre, descripcion, fechaCreacion,estatus,metodoDeAceptacion) VALUES ('$idSprint', '$nombre', '$descripcion', NOW(),'creada',null)";
             $conexion->getConexion()->query($sql);
             $idHistoria = $conexion->getConexion()->insert_id;
-            $this->crearRonda($idHistoria);
+            $this->crearRonda($idProyecto,$idSprint,$idHistoria);
        
-
-
             
         }
     }
-    public function crearRonda($iHistoria){
-        $sql = "INSERT INTO rondas (idHistoria, puntuacion, fechaCreacion) VALUES ('$iHistoria', 0, NOW())";
+    public function crearRonda($idProyecto,$idSprint,$idHistoria){
+        $sql = "INSERT INTO rondas (idHistoria, puntuacion, fechaCreacion) VALUES ('$idHistoria', 0, NOW())";
         $conexion = new Conexion();
         $conexion->getConexion()->query($sql);
+        $notificacion = new Notificaciones();
+        $notificacion->abrirVotaciones($idProyecto,$idSprint,$idHistoria);
 
     }
 
@@ -75,6 +77,18 @@ class Historia {
         $historia = $resultado->fetch_assoc();
         return $historia;
     }
+    // verificar si todos los usuarios de una historia de usuario ya votaron
+    public function todosVotaron($idHistoria){
+        $sql = "SELECT idRonda FROM rondas WHERE idHistoria = '$idHistoria' ORDER BY fechaCreacion DESC LIMIT 1";
+        $conexion = new Conexion();
+        $resultado = $conexion->getConexion()->query($sql);
+        $idRonda = intval($resultado->fetch_assoc()['idRonda']);
+        $sql = "SELECT * FROM votaciones WHERE idRonda = '$idRonda'";
+        $resultado = $conexion->getConexion()->query($sql);
+        $proyecto = new Proyectos();
+        $integrantes = $proyecto->obtenerIntegrantesProyecto($_GET['idProyecto']);
+        return $resultado->num_rows == count($integrantes[0]) - 1;
+    }
     public function votarHistoria($idHistoria,$valor,$motivo){
         $idUsuario = $_COOKIE['idUsuario'];
         $sql = "SELECT idRonda FROM rondas WHERE idHistoria = '$idHistoria' ORDER BY fechaCreacion DESC LIMIT 1";
@@ -87,6 +101,10 @@ class Historia {
         $conexion->getConexion()->query($sql);
         $sql = "UPDATE historiasusuario SET estatus = 'deliberada' WHERE idHistoria = '$idHistoria'";
         $conexion->getConexion()->query($sql);
+        if ($this->todosVotaron($idHistoria)){
+            $notificacion = new Notificaciones();
+            $notificacion->votacionesConcluidas($_GET['idProyecto'],$_GET['idSprint'],$idHistoria);            
+        }
 
     }
     public function votarHistoriaScrumMaster($idHistoria,$valor){
@@ -181,7 +199,7 @@ class Historia {
         inner join usuarios on usuarios.idUsuario = votaciones.idUsuario
         inner join rondas on votaciones.idRonda = rondas.idRonda
         inner join historiasusuario on rondas.idHistoria = historiasusuario.idHistoria
-        where historiasusuario.idHistoria = '$idHistoria'";
+        where historiasusuario.idHistoria = '$idHistoria' ORDER BY rondas.fechaCreacion ASC" ;
         $conexion = new Conexion();
         $resultado = $conexion->getConexion()->query($sql);
         $rondas = array();
@@ -192,6 +210,17 @@ class Historia {
         }
         return $rondas;
     }
+
+public function actualizarHistoria($idHistoria,$nombre,$descripcion){
+     $sql = "UPDATE historiasusuario SET nombre = '$nombre', descripcion = '$descripcion' WHERE idHistoria = '$idHistoria'";
+    $conexion = new Conexion();
+    $conexion->getConexion()->query($sql);
+
+    
+        
+
+}
+    
 
 }
 ?>

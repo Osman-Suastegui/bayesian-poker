@@ -11,6 +11,7 @@
 <body style = "background-color: #203647;">
 <?php
   include "../bayesian-poker/vistas/header.php";
+  $baseURL = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
 
 ?>
 
@@ -21,7 +22,7 @@
     <h1 class="align-self-start">Sprint</h1>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end m-3">
 
-        <a href="http://localhost:3000/verSprint.php?idProyecto=<?php echo $idProyecto?>&idSprint=<?php echo $idSprint?>&estatus=activo" class="btn btn-primary" type="button">Volver</a>
+        <a href="<?php $baseURL?>/verSprint.php?idProyecto=<?php echo $idProyecto?>&idSprint=<?php echo $idSprint?>&estatus=activo" class="btn btn-primary" type="button">Volver</a>
         
       </div>
   </div>

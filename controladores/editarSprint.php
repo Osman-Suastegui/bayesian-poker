@@ -8,8 +8,13 @@ if (isset($_POST['submit']) && $_POST['submit'] === 'guardar') {
     if(isset($_POST['nombreSprint']) && isset($_POST['descripcionSprint'])){
         $nombre = $_POST['nombreSprint'];
         $descripcion = $_POST['descripcionSprint'];
-        $sprint = new Sprint();
-        $sprint->editarSprint($nombre,$descripcion);
+        if (empty($_POST["nombreSprint"]) || empty($_POST["descripcionSprint"])) {
+            echo "los campos no pueden estar vacios";
+         
+        }else{
+            $sprint = new Sprint();
+            $sprint->editarSprint($nombre,$descripcion);    
+        }
         
     }
 
