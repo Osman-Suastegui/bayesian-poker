@@ -89,6 +89,7 @@ class Proyectos
         $idProyecto = $this->conexion->getConexion()->insert_id;
         return $idProyecto;
     }
+    
     public function insertarIntegranteBD($idUsuario, $idProyecto,$rol){
         $sql = "INSERT INTO integrantes (idUsuario, idProyecto, rol, estatus) VALUES (?, ?, '$rol', 'activo')";
         $stmt = $this->conexion->getConexion()->prepare($sql);
@@ -169,7 +170,19 @@ class Proyectos
         $this->conexion->getConexion()->query($sql);
 
     }
-
+    public function estaProyectoActivo($codigoProyecto){
+        $sql = "SELECT idProyecto,estatus FROM proyectos WHERE codigo = '$codigoProyecto'";
+        $resultado = $this->conexion->getConexion()->query($sql);
+        $fila = $resultado->fetch_assoc();
+        $idProyecto = $fila['idProyecto'];
+        $estatus = $fila['estatus'];
+      
+        if (!$this->estaScrumMasterActivo($idProyecto) || $estatus == 'inactivo'){
+            return False;
+        }
+        return False;
+       
+    }
 
 }
 ?>

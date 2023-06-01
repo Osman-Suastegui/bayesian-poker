@@ -77,6 +77,7 @@ class Historia {
         $historia = $resultado->fetch_assoc();
         return $historia;
     }
+    
     // verificar si todos los usuarios de una historia de usuario ya votaron
     public function todosVotaron($idHistoria){
         $sql = "SELECT idRonda FROM rondas WHERE idHistoria = '$idHistoria' ORDER BY fechaCreacion DESC LIMIT 1";
@@ -215,10 +216,6 @@ public function actualizarHistoria($idHistoria,$nombre,$descripcion){
      $sql = "UPDATE historiasusuario SET nombre = '$nombre', descripcion = '$descripcion' WHERE idHistoria = '$idHistoria'";
     $conexion = new Conexion();
     $conexion->getConexion()->query($sql);
-
-    
-        
-
 }
     
 

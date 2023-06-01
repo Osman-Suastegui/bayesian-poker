@@ -12,7 +12,7 @@ if(isset($_POST["nombreHistoria"]) && isset($_POST["descripcionHistoria"]) ){
     $nombreHistoria = $_POST["nombreHistoria"];
     $descripcionHistoria = $_POST["descripcionHistoria"];
     if (empty($_POST["nombreHistoria"]) || empty($_POST["descripcionHistoria"])) {
-        echo "los campos no pueden estar vacios";
+        echo "<div class='mensaje-error'>los campos no pueden estar vacios</div>";
     }else{   
         $historia->crearHistoria($nombreHistoria,$descripcionHistoria);
     }

@@ -3,6 +3,9 @@
     include "../bayesian-poker/vistas/registrarsePt2.html";
 
 if (isset($_POST["nombre"]) && isset($_POST["apellido"]) && isset($_POST["edad"]) && isset($_POST["genero"])) {
+
+    // if($_POST['edad'])
+
     $nombre = $_POST["nombre"];
     $apellido = $_POST["apellido"];
     $edad = $_POST["edad"];

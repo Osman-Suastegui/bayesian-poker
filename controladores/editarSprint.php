@@ -9,7 +9,7 @@ if (isset($_POST['submit']) && $_POST['submit'] === 'guardar') {
         $nombre = $_POST['nombreSprint'];
         $descripcion = $_POST['descripcionSprint'];
         if (empty($_POST["nombreSprint"]) || empty($_POST["descripcionSprint"])) {
-            echo "los campos no pueden estar vacios";
+            echo "<div class='mensaje-error'>los campos no pueden estar vacios</div>";
          
         }else{
             $sprint = new Sprint();

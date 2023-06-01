@@ -42,8 +42,12 @@ if (isset($_POST['codigoProyecto'])){
     $codigoProyecto = $_POST['codigoProyecto'];
 
     if(!$proyecto->existeCodigoProyecto($codigoProyecto)){
-        echo "El código de proyecto no existe";
-    }else{  
+        echo "<div class='mensaje-error'>El código de proyecto no existe</div>";
+
+    }else if (!$proyecto->estaProyectoActivo($codigoProyecto)){
+        echo "<div class='mensaje-error'>El proyecto esta deshabilitado</div>";
+    }
+    else{  
         $usuario= $_COOKIE['usuario'];
         $notificacion = new Notificaciones();
         $notificacion->solicitarUnirseProyecto($codigoProyecto,$usuario);

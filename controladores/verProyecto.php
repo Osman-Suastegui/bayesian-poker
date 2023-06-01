@@ -21,7 +21,7 @@ if(isset($_POST['guardarProyecto'])){
     $nombreProyecto = $_POST['nombreProyecto'];
     $descripcionProyecto = $_POST['descripcionProyecto'];
     if ($nombreProyecto == "" || $descripcionProyecto == ""){
-        echo "los campos no pueden estar vacios";
+        echo "<div class='mensaje-error'>los campos no pueden estar vacios</div>";
     }else{
         $proyecto->editarProyecto($idProyecto,$nombreProyecto,$descripcionProyecto);
     }

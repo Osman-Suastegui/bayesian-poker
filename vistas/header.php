@@ -11,7 +11,7 @@ $baseURL = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "
 
     <div class="container-lg">
 
-      <a class="navbar-brand">
+      <a class="navbar-brand" href="./proyectos.php">
         <img src="../static/img/BayesianPokerTitle.png" alt="" width="380px">
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

@@ -8,6 +8,14 @@
   <title>Document</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css">
+  <style>
+    .mensaje-error {
+      color: red;
+      font-size: 20px;
+      font-weight: bold; 
+
+    }
+  </style>
 </head>
 
 <body style="background-color: #203647;">
@@ -46,7 +54,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Votar</h1>
+            <h1  class="modal-title fs-5" id="votar"></h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
@@ -73,6 +81,12 @@
   <script>
     function fijarCookie(puntaje) {
       document.cookie = "puntaje=" + puntaje;
+      // exampleModalLabel
+      let exampleModalLabel = document.getElementById('votar');
+      exampleModalLabel.innerHTML = "Votar con " ;
+      exampleModalLabel.innerHTML += puntaje;
+
+
     }
     const exampleModal = document.getElementById('exampleModal')
     if (exampleModal) {

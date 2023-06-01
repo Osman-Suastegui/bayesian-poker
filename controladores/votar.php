@@ -26,25 +26,27 @@ if(isset($_POST['agregarRonda'])){
     $idSprint = $_GET['idSprint'];
     if($historia->todosVotaron($idHistoria)){
         $historia->crearRonda($idProyecto,$idSprint,$idHistoria);
+        header("Location: verSprint.php?idProyecto=$idProyecto&idSprint=$idSprint&estatus=activo");
+        exit();
     }else{
-        echo "Aun faltan miembros por votar";
+            echo "<div class='mensaje-error'>Aun faltan miembros por votar</div>";
     }
-    header("Location: verSprint.php?idProyecto=$idProyecto&idSprint=$idSprint&estatus=activo");
-    exit();
 }
 if(isset($_POST['asignarPromedio'])){
     if(!$historia->todosVotaron($idHistoria)){
-        echo "Aun faltan miembros por votar";
+        echo "<div class='mensaje-error'>Aun faltan miembros por votar</div>";
+
     }else{
         $historia->asignarPromedioDeTodasLasVotaciones($idHistoria);
         $notificacion = new Notificaciones();
         $idSprint = $_GET['idSprint'];
         $notificacion->historiaAceptada($idProyecto,$idSprint,$idHistoria);
+        $idSprint = $_GET['idSprint'];    
     
+        header("Location: verSprint.php?idProyecto=$idProyecto&idSprint=$idSprint&estatus=activo");
+        exit();
     }
-    $idSprint = $_GET['idSprint'];    
-    header("Location: verSprint.php?idProyecto=$idProyecto&idSprint=$idSprint&estatus=activo");
-    exit();
+
 }
 // guardarHistoria
 if(isset($_POST['guardarHistoria'])){
