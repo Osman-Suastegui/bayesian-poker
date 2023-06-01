@@ -1,86 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear Proyecto</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <link rel="stylesheet" href="../static/css/VerPerfil.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Perfil</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
     <script src="../static/js/validaciones.js"></script>
-
     <style>
-        .mensaje-error {
+      .mensaje-error {
         color: red;
         font-size: 20px;
-        font-weight: bold; 
-
-        }
+        font-weight: bold;
+      }
     </style>
-</head>
-<body style = "background-color: #203647;">
+  </head>
+  <body style="background-color: #203647">
+    <form
+      class="container my-4 mx-auto rounded p-4"
+      style="background-color: #eefbfb; width: fit-content"
+      method="post" action="../perfil.php"
+    >
+      <div class="d-flex justify-content-between align-items-start">
+        <h1 class="align-self-start m-3">Mi Perfil</h1>
+      </div>
+      <div class="container">
+        <div class="nombre">
+          <p style="display: inline-block" class="fs-3">Nombre (s)</p>
+          <input type="text" id="nombre" name="nombre" style="display: inline-block"  disabled="true"  value="<?php echo $nombre;?>" />
+        </div>
 
-  <?php
-     include "../bayesian-poker/vistas/header.php";
+        <div class="apellido">
+          <p style="display: inline-block" class="fs-3">Apellido (s)</p>
+          <input type="text" id="apellido" name="apellido" style="display: inline-block" disabled="true" value="<?php echo $apellido;?>"/>
+        </div>
 
-  ?>
-        <section class="fondo">
-            <h1> Mi perfil</h1>
-            
-            <form class="divs" method="post" action="../perfil.php">
-                <div class="mb-3">
-                    <label for="nombre" class="form-label"  >Nombre (s)</label>
-                    <input type="text" class="form-control" id="nombre" disabled="true"  name="nombre" value="<?php echo $nombre;?>">
-                </div>
-            
-                <div class="mb-3">
-                    <label for="apellido" class="form-label">Apellido (s)</label>
-                    <input type="text" class="form-control" id="apellido" disabled="true" name="apellido" value="<?php echo $apellido;?>" >
-                </div>
-            
-                <div class="mb-3">
-                    <label for="edad" class="form-label">Edad</label>
-                    <input type="text" class="form-control" id="edad" name="edad" disabled="true"  value="<?php echo $edad;?>" >
-                </div>
-            
-                <div class="sexo">
-                    <p class="fs-3">Sexo</p>
-                    <div class="dropdown">
-                        <!-- <button id="sexo2" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Masculino
-                        </button> -->
+        <div class="edad">
+          <p style="display: inline-block" class="fs-3">Edad</p>
+          <input type="text" id="edad" name="edad" style="display: inline-block" disabled="true"  value="<?php echo $edad;?>" />
+        </div>
 
-                        <select disabled="true" id="sexo" name="sexo" >
+        <div class="sexo">
+          <p class="fs-3">Sexo</p>
+          <div class="dropdown">
+
+            <select disabled="true" id="sexo" name="sexo" >
                             <option class="dropdown-item" value="femenino"<?php if ($sexo == 'femenino') echo ' selected'; ?>>Femenino</option>
                             <option class="dropdown-item" value="masculino"<?php if ($sexo == 'masculino') echo ' selected'; ?>>Masculino</option>
-                        </select>
+              </select>
             
-    
-                    </div>
-                </div>
-            
-                <div class="mb-3">
-                    <label for="usuario" class="form-label"  >Usuario</label>
-                    <input type="text" class="form-control" id="usuario" disabled="true" name="usuario" value="<?php echo $usuario;?>">
-                </div>
-            
-                <div class="mb-3">
-                    <label for="correo" class="form-label" >Correo</label>
-                    <input type="email" class="form-control" disabled="true" name="email" value="<?php echo $correo;?>"  id="correo">
-                </div>
-                
-                    <div class="mb-3">
-                        <button type="button" class="btn btn-primary"  onclick="habilitar();">Editar perfil</button>
-                        <input type="submit" class="btn btn-primary" value="guardar cambios"/>
-                    </div>
+          </div>
+        </div>
 
-            </form>
-<!--             
-            <aside class="mb-3">
-                <h2>Cambiar Contraseña</h2>
-                <p>Recibe un enlace para acceder a una ventana de cambio de contraseña.</p>
-                <button class="btn btn-primary">Enviar Enlace</button>
-            </aside> -->
-            <a class="btn btn-primary volver" href="../proyectos.php">Volver</a>
-            
-        </section
+        <div class="usuario">
+          <p style="display: inline-block" class="fs-3">Usuario</p>
+          <input id="usuario" type="text" name="usuario" style="display: inline-block" disabled="true" value="<?php echo $usuario;?>" />
+        </div>
+
+        <div class="correo">
+          <p style="display: inline-block" class="fs-3">Correo</p>
+          <input type="email" name="email" id="correo" style="display: inline-block" disabled="true"  value="<?php echo $correo;?>"  />
+        </div>
+
+        <div class="btnEditar">
+          <button type="button" class="btn btn-primary p-2"  onclick="habilitar();">Editar perfil</button>
+          
+          <input type="submit" class="btn btn-primary" value="guardar cambios"/>
+        </div>
+      </div>
+    </form>
+
+    <div
+      class="container rounded p-4 mx-auto m-3"
+      style="background-color: #eefbfb; width: fit-content"
+    >
+      <div class="d-flex justify-content-between align-items-start">
+        <h1 class="align-self-start m-3">Cambiar contraseña</h1>
+      </div>
+      <p class="fs-5">
+        Recibe un enlace para acceder a una ventana de cambio de contraseña
+      </p>
+      <a class="btn btn-primary" href="./cambiarContra.php">Cambiar contraseña</a>
+
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end m-3">
+        <button class="btn btn-primary" type="button">Volver</button>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      function copyToClipboard(text) {
+        const input = document.createElement("textarea");
+        input.value = text;
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand("copy");
+        document.body.removeChild(input);
+      }
+    </script>
+  </body>
+</html>

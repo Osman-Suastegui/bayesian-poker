@@ -13,6 +13,11 @@ class Usuario{
         $con->query($sql);
 
     }
+    public function cambiarContraPorUsuario($usuario, $contra){
+        $conexion = new Conexion();
+        $sql = "UPDATE usuarios SET contrasena = '$contra' WHERE usuario = '$usuario'";
+        $conexion->getConexion()->query($sql);
+    }
     function obtenerRol($idProyecto){
         // $idProyecto = $_GET['idProyecto'];
         $idUsuario = $_COOKIE['idUsuario'];
